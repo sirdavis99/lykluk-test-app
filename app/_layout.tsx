@@ -1,37 +1,62 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
 import 'react-native-reanimated';
-
+import 'expo-asset';
+import React from "react";
+import { useFonts } from 'expo-font';
+import { Slot } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { useCallback } from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { loadAppFonts } from '@utils/fonts';
+import { Platform, UIManager } from 'react-native';
+import { Provider } from 'react-redux';
+import { ThemeModesProvider } from '@/providers';
+import { CustomFlashMessage } from '@/components/notify';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { store } from '@/stores/main';
+import { Text, TextInput } from 'react-native';
+import { MediumText } from '@/components/text';
+
+
+// @ts-ignore
+Text.defaultProps = Text.defaultProps || {};
+// @ts-ignore
+Text.defaultProps.allowFontScaling = false;
+// @ts-ignore
+TextInput.defaultProps = TextInput.defaultProps || {};
+// @ts-ignore
+TextInput.defaultProps.allowFontScaling = false;
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export default function Layout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const [fontsLoaded, error] = useFonts(loadAppFonts());
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [fontsLoaded]);
 
-  if (!loaded) {
-    return null;
+  if (Platform.OS === 'android') {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+      UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
   }
 
+  // if (!fontsLoaded) return null;
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeModesProvider>
+        <CustomFlashMessage />
+        <SafeAreaProvider onLayout={onLayoutRootView}>
+          {/* <Slot /> */}
+
+          <MediumText>lsksk</MediumText>
+        </SafeAreaProvider>
+      </ThemeModesProvider>
+    </Provider>
   );
 }
