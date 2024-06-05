@@ -1,7 +1,7 @@
 import React from "react"
 import { ActivityIndicator, ColorValue } from "react-native"
-import { LoadingSection } from ".";
-import { hp } from "utils/general"
+import { LoadingContainer, LoadingSection } from "."
+import { hp } from "../../utility/general"
 
 export const LoadingView: React.FC<{
     margin?: number,

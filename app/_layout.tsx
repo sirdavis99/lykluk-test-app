@@ -1,20 +1,18 @@
-import 'react-native-reanimated';
+import "react-native-reanimated"
 import 'expo-asset';
 import React from "react";
-import { useFonts } from 'expo-font';
-import { Slot } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback } from 'react';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { loadAppFonts } from '@utils/fonts';
-import { Platform, UIManager } from 'react-native';
-import { Provider } from 'react-redux';
-import { ThemeModesProvider } from '@/providers';
-import { CustomFlashMessage } from '@/components/notify';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { store } from '@/stores/main';
+import { ListenerSubscription, store } from "stores";
+import { Slot, SplashScreen } from "expo-router";
+import { useCallback, useEffect, useRef } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import * as Font from "expo-font";
+import * as Notifications from 'expo-notifications';
+import { loadAppFonts, registerForPushNotificationsAsync } from "utils";
+import { Platform, UIManager } from "react-native";
+import { Provider } from "react-redux";
+import { ThemeModesProvider } from "providers";
 import { Text, TextInput } from 'react-native';
-import { MediumText } from '@/components/text';
+import { CustomFlashMessage } from '@components/notify';
 
 
 // @ts-ignore
@@ -26,12 +24,23 @@ TextInput.defaultProps = TextInput.defaultProps || {};
 // @ts-ignore
 TextInput.defaultProps.allowFontScaling = false;
 
+
+export {
+  ErrorBoundary,
+} from "expo-router";
+
+export const unstable_settings = {
+  // Ensure that reloading on `/modal` keeps a back button present.
+  initialRouteName: "index",
+};
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function Layout() {
-  const colorScheme = useColorScheme();
-  const [fontsLoaded, error] = useFonts(loadAppFonts());
+export default function RootLayout() {
+  const notificationListener = useRef<ListenerSubscription>();
+  const responseListener = useRef<ListenerSubscription>();
+  const [fontsLoaded, error] = Font.useFonts(loadAppFonts());
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded) {
@@ -39,22 +48,44 @@ export default function Layout() {
     }
   }, [fontsLoaded]);
 
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+    // This listener is fired whenever a notification is received while the app is foregrounded
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        //setNotification(notification);
+        // console.log(notification);
+      });
+
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        // console.log(response);
+      });
+    return () => {
+      if (notificationListener.current)
+        Notifications.removeNotificationSubscription(
+          notificationListener.current
+        );
+      if (responseListener.current)
+        Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
   if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
       UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }
 
-  // if (!fontsLoaded) return null;
+  if (!fontsLoaded) return null;
 
   return (
     <Provider store={store}>
       <ThemeModesProvider>
         <CustomFlashMessage />
         <SafeAreaProvider onLayout={onLayoutRootView}>
-          {/* <Slot /> */}
-
-          <MediumText>lsksk</MediumText>
+          <Slot />
         </SafeAreaProvider>
       </ThemeModesProvider>
     </Provider>

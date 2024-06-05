@@ -5,7 +5,7 @@ import { widthPixel } from "utils/pxToDpConvert";
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { ButtonStylePropsExtra } from "./interface";
 import { font } from "@utils/fonts";
-import { spacingSize } from "components/views";
+import { StyledViewProps, spacingSize } from "components/views";
 
 export const ButtonSolidView = styled.TouchableOpacity<ButtonStylePropsExtra>(({
     backgroundColor, borderColor, width, borderWidth
@@ -37,19 +37,25 @@ export const ButtonOutlineView = styled(ButtonSolidView)({
     borderWidth: 1.7,
 });
 
-export const StyledTouchable = styled.TouchableOpacity<{
-    paddingHorizontal?: number,
-    paddingVertical?: number,
-}>(({
+export const StyledTouchable = styled.TouchableOpacity<StyledViewProps>(({
     theme,
     paddingHorizontal = spacingSize.i10,
     paddingVertical = spacingSize.i10,
+    borderRadius = 5,
+    ...rest
 }) => ({
     paddingHorizontal,
     paddingVertical,
-    borderRadius: 5,
+    borderRadius,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: rest?.backgroundColor,
+    width: rest?.width,
+    height: rest?.height,
+    borderColor: rest?.borderColor,
+    borderWidth: rest?.borderWidth,
+    marginTop: rest?.marginTop,
+    opacity: rest?.opacity,
 }))
 
 export const ThemedButtonOuter = styled.TouchableOpacity<{ borderColor?: ColorValue }>(({

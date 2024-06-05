@@ -22,6 +22,7 @@ export const RegisterValidationSchema = () => {
       .required("Last Name is Required"),
     email: string().email().required().label("Email"),
     password: string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
       .min(6)
       .required()
       .label("Password"),

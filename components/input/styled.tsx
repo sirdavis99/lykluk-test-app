@@ -1,9 +1,9 @@
-import { RFFontSize, RFLineHeight, RegularText } from "components/text";
+import { RFFontSize, RFLineHeight, RegularText, fontSize, lineHeight } from "components/text";
 import styled from "@emotion/native";
 import { font, heightPixel, widthPixel } from "utils";
 import { Platform } from "react-native";
 import { TextBoxProps } from "./interface";
-import { spacingSize } from "@components/views";
+import { RFSpacingSize, spacingSize } from "@components/views";
 
 
 export const InputBox = styled.TextInput<TextBoxProps>(({

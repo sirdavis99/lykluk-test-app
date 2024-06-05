@@ -1,9 +1,16 @@
 import styled from "@emotion/native";
-import { heightPixel, widthPixel } from "../../utils/pxToDpConvert";
+import {
+  fontPixel,
+  heightPixel,
+  widthPixel,
+} from "../../utils/pxToDpConvert"
+// from "../../utility/pxToDpConvert";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import React, { ReactNode } from "react";
-import { ColorValue, TouchableOpacity, ViewProps } from "react-native";
-import { BoldText } from '../text/styled';
-import { useNavigation } from "@react-navigation/native";
+import { ColorValue, TouchableOpacity, ViewProps, ViewStyle } from "react-native";
+import { ExtraBoldText, BoldText } from '../text/styled';
+import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { useTheme } from "@emotion/react";
 import BackArrow from "../../assets/svgs/back-arrow.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 

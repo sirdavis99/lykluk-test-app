@@ -1,4 +1,5 @@
-// import { API_URL, CURRENT_ENV } from "@env";
+import { API_URL, CURRENT_ENV } from "@env";
+
 import Constants from "expo-constants";
 import * as Updates from "expo-updates";
 
@@ -6,7 +7,7 @@ import * as Updates from "expo-updates";
 
 const stillTestingArray = ["development", "testing"];
 
-export const currentEnvironment = process.env.CURRENT_ENV ?? "development";
+export const currentEnvironment = CURRENT_ENV ?? "development";
 
 export const releaseChannel = Updates?.channel ?? currentEnvironment;
 
@@ -24,7 +25,8 @@ export const app_storage = "@shako.local.storage";
 export const app_theme_color_storage = "@shako.theme.local.storage";
 
 // live url as default
-export const baseUrl = process.env.API_URL ?? "https://api-dev.shakohub.com/v1";
+export const baseUrl =
+  process.env.API_URL ?? API_URL ?? "https://api-dev.shakohub.com/v1";
 
 export const BACKGROUND_NOTIFICATION_TASK = "BACKGROUND-NOTIFICATION-TASK";
 

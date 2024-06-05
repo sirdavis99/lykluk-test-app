@@ -38,4 +38,4 @@ export const useSelectCurrentUser = (
 ): User | null | undefined => state.auth.user;
 export const useIsLoading = (state: RootState): boolean | undefined => state.auth.isLoading;
 export const useSelectAuthToken = (state: RootState): string | null | undefined => state.auth.access_token;
-export const useSelectAuthID = (state: RootState): string | undefined => state.auth.user?.uuid;
+export const useSelectAuthID = (state: RootState): string | undefined => state.auth.user?.id;

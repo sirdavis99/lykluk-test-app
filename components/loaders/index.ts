@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
-import { ColorValue, DimensionValue } from 'react-native';
+import { ColorValue } from 'react-native';
 import { FadeLoading } from 'react-native-fade-loading';
-import { heightPixel, widthPixel } from 'utils/pxToDpConvert';
+import { heightPixel, widthPixel } from '../../utility/pxToDpConvert';
 
 
 export const LoadingContainer = styled.View({
@@ -9,7 +9,7 @@ export const LoadingContainer = styled.View({
 });
 
 export const LoadingSection = styled.View<{
-  width?: DimensionValue,
+  width?: number| string,
   size?: number,
   background?: ColorValue,
 }>(({

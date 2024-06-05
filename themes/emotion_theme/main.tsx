@@ -8,7 +8,7 @@ export const EmothionThemeColorBase: ExtendEmotionTheme['colors'] = {
   disabled: "#D9D9D9",
   text: "#000000",
   background: "#F8FDFD",
-  primary: "#80005C",
+  primary: "#8e00fe",
   secondary: "#FF31C5",
   tertiary: "#212427",
   // others

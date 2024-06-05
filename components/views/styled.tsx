@@ -62,19 +62,19 @@ export const Card = styled.Pressable<{
     display: "flex"
 }))
 
-export const ViewContainer = styled(Animated.View)<{
-    paddingHorizontal?: number,
-    paddingVertical?: number,
-    backgroundColor?: ColorValue
-    backgroundImage?: any
-}>(({
+export const ViewContainer = styled(Animated.View)<StyledViewProps>(({
     paddingVertical = 0,
     paddingHorizontal = RFSpacingSize.i20,
-    backgroundColor
+    backgroundColor,
+    ...rest
 }) => ({
     paddingHorizontal,
     paddingVertical,
-    backgroundColor
+    backgroundColor,
+    flex: rest?.flex,
+    flexGrow: rest?.flexGrow,
+    paddingRight: rest?.paddingRight,
+    paddingLeft: rest?.paddingLeft,
 }));
 
 export const ActionSheetViewContainer = styled.View({

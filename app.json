@@ -1,49 +1,19 @@
 {
   "expo": {
-    "name": "lykluk",
+    "scheme": "com.lykluk-app",
     "slug": "lykluk-app",
+    "owner": "lykluk-org",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "lykluk",
     "userInterfaceStyle": "automatic",
     "plugins": [
       "expo-font",
       "expo-router",
       "expo-asset"
     ],
-    "owner": "lykluk-org",
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
     "assetBundlePatterns": [
       "**/*"
     ],
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "9309812b-945a-44ca-8cad-18be65e498d0"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/9309812b-945a-44ca-8cad-18be65e498d0"
-    },
     "packagerOpts": {
       "config": "metro.config.js",
       "sourceExts": [
@@ -59,6 +29,22 @@
         "wasm",
         "svg"
       ]
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9309812b-945a-44ca-8cad-18be65e498d0"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/9309812b-945a-44ca-8cad-18be65e498d0"
+    },
+    "android": {},
+    "ios": {}
   }
 }

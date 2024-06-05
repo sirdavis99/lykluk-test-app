@@ -1,41 +1,20 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "jsx": "react",
+    // "jsx": "react",
     "strict": true,
     "baseUrl": "./",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "paths": {
-      "@/*": [
-        "*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@forms/*": [
-        "forms/*"
-      ],
-      "@providers/*": [
-        "providers/*"
-      ],
-      "@stores/*": [
-        "stores/*"
-      ],
-      "@themes/*": [
-        "themes/*"
-      ]
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@forms/*": ["forms/*"],
+      "@providers/*": ["providers/*"],
+      "@stores/*": ["stores/*"],
+      "@themes/*": ["themes/*"]
     }
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  }
 }
