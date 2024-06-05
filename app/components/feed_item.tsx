@@ -5,11 +5,8 @@ import React, { useRef, useState } from "react"
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
 import { FeedAction } from "./feed_action"
 import { FeedAbout } from "./feed_about"
-import { FeedHeader } from "./feed_header"
-import { Asset, useAssets } from "expo-asset";
 import { useWindowDimensions } from "react-native";
 import IsInview from 'react-native-isinview'
-import { RFValue } from "react-native-responsive-fontsize";
 
 export interface FeedItemProps {
     source?: AVPlaybackSource

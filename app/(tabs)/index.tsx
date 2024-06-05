@@ -1,10 +1,9 @@
-import { BaseView, Spacer, ViewContainer } from '@components/views';
-import { FeedHeader, FeedItem } from './components';
+import { BaseView, Spacer } from '@components/views';
+import { FeedHeader, FeedItem } from '../components';
 import { useAssets } from 'expo-asset';
 import Video1 from "assets/videos/vid-1.mp4"
 import Video2 from "assets/videos/vid-2.mp4"
 import Video3 from "assets/videos/vid-3.mp4"
-import React from 'react';
 import { FlatList, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { heightPixel } from '@utils/pxToDpConvert';
