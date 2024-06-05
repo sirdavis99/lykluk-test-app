@@ -44,7 +44,9 @@
     "updates": {
       "url": "https://u.expo.dev/9309812b-945a-44ca-8cad-18be65e498d0"
     },
-    "android": {},
+    "android": {
+      "package": "com.lykluk.app"
+    },
     "ios": {}
   }
 }
