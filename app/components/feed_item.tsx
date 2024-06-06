@@ -55,7 +55,12 @@ export const FeedItem: React.FC<FeedItemProps> = ({
     const handlePlaybackStatusUpdate = (status: AVPlaybackStatus) => {
         // console.log(playCount, (status as AVPlaybackStatusSuccess)?.didJustFinish, (status as AVPlaybackStatusSuccess)?.isPlaying)
         setStatus(status)
-        setSliderValue((status as AVPlaybackStatusSuccess)?.positionMillis / ((status as AVPlaybackStatusSuccess)?.durationMillis ?? 0));
+        
+        const currentSeek = (status as AVPlaybackStatusSuccess)?.positionMillis / ((status as AVPlaybackStatusSuccess)?.durationMillis ?? 0);
+        if(sliderValue  <= currentSeek) {
+            setSliderValue(currentSeek);
+        }
+        
         if (status && (status as AVPlaybackStatusSuccess)?.isPlaying) {
             if ((status as AVPlaybackStatusSuccess)?.didJustFinish && (playCount < 3)) {
                 setPlayCount(playCount + 1);
@@ -66,17 +71,16 @@ export const FeedItem: React.FC<FeedItemProps> = ({
     };
 
     const handleSeek = (value: number) => {
-        const previousSliderValue = sliderValue;
-        setSliderValue(value);
         video?.current?.pauseAsync();
+        const previousSliderValue = sliderValue;
         const pendAction = debounce(() => {
             if (video?.current) {
-                
+                setSliderValue(value);
                 video?.current.playFromPositionAsync(value * ((status as AVPlaybackStatusSuccess)?.durationMillis ?? 0));
             } else {
                 setSliderValue(previousSliderValue);
             }
-        }, 500)
+        }, 1500)
 
         pendAction()
     };
