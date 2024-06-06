@@ -1,6 +1,7 @@
+import { StyledTouchable } from "@components/button";
 import { MediumText, RegularText, fontSize, lineHeight } from "@components/text";
 import { HSpacer, Row, ViewContainer } from "@components/views"
-import { Feather } from "@expo/vector-icons"
+import { Entypo, Feather, Fontisto, MaterialCommunityIcons } from "@expo/vector-icons"
 import { useThemeMode } from "@providers/hooks"
 import { Avatar } from "@rneui/base"
 import { nFormatter } from "@utils/formatting"
@@ -11,7 +12,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 export const FeedAbout = () => {
     const { colors } = useThemeMode();
-    
+
     const onPress = () => {
         Alert.alert("Beautiful!", "Lets see what we can make of this action!");
     }
@@ -34,6 +35,8 @@ export const FeedAbout = () => {
                     <ViewContainer
                         paddingRight={10}
                         paddingLeft={15}
+                        justifyContent="center"
+                        alignItems="center"
                     >
                         <Avatar
                             size={50}
@@ -42,6 +45,24 @@ export const FeedAbout = () => {
                             key={`123`}
                             onPress={onPress}
                         />
+                        <StyledTouchable
+                            paddingVertical={0}
+                            paddingHorizontal={0}
+                            flexDirection="row"
+                            height={fontSize.sm}
+                            width={fontSize.sm}
+                            borderRadius={2}
+                            alignItems="center"
+                            justifyContent="center"
+                            backgroundColor={colors.primary}
+                            marginTop={-5}
+                        >
+                            <Entypo
+                                name="plus"
+                                size={fontSize.sm}
+                                color={colors.white}
+                            />
+                        </StyledTouchable>
                     </ViewContainer>
                     <ViewContainer
                         flex={1}
@@ -62,18 +83,38 @@ export const FeedAbout = () => {
                                 {nFormatter(275001)}&nbsp;views
                             </RegularText>
                         </Row>
-                        <MediumText
-                            color={colors.white}
-                            fontSize={fontSize.xs - 1}
-                            lineHeight={fontSize.xs - 1}
-                            onPress={onPress}
-                        >
-                            Brooklyn Simmons
-                        </MediumText>
+                        <Row alignItems="center" onPress={onPress}>
+                            <MediumText
+                                color={colors.white}
+                                fontSize={fontSize.xs}
+                                lineHeight={fontSize.xs}
+                            >
+                                Brooklyn Simmons
+                            </MediumText>
+                            <HSpacer width={6} />
+                            <StyledTouchable
+                                paddingVertical={0}
+                                paddingHorizontal={0}
+                                flexDirection="row"
+                                height={fontSize.md}
+                                width={fontSize.md}
+                                borderRadius={fontSize.md}
+                                alignItems="center"
+                                justifyContent="center"
+                                backgroundColor={colors.primary}
+                                marginTop={-2}
+                            >
+                                <Entypo
+                                    name="check"
+                                    size={fontSize.xs}
+                                    color={colors.white}
+                                />
+                            </StyledTouchable>
+                        </Row>
                         <RegularText
                             color={colors.grey_dark_shade}
-                            fontSize={fontSize.xs - 4}
-                            lineHeight={lineHeight.xs - 2}
+                            fontSize={fontSize.xxs}
+                            lineHeight={lineHeight.xxs}
                             onPress={onPress}
                         >
                             {truncate("Dont kw how to finish this. #hashtag and #second", {

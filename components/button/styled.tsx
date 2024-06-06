@@ -7,6 +7,26 @@ import { ButtonStylePropsExtra } from "./interface";
 import { font } from "@utils/fonts";
 import { StyledViewProps, spacingSize } from "components/views";
 
+
+export const StyledTouchableOpacity = styled.TouchableOpacity<StyledViewProps>(({
+    ...rest
+}) => ({
+    paddingHorizontal: rest?.paddingHorizontal,
+    paddingVertical: rest?.paddingVertical,
+    borderRadius: rest?.borderRadius,
+    alignItems: rest?.alignItems,
+    justifyContent: rest?.justifyContent,
+    backgroundColor: rest?.backgroundColor,
+    width: rest?.width,
+    height: rest?.height,
+    borderColor: rest?.borderColor,
+    borderWidth: rest?.borderWidth,
+    marginTop: rest?.marginTop,
+    opacity: rest?.opacity,
+    padding: rest?.padding,
+}))
+
+
 export const ButtonSolidView = styled.TouchableOpacity<ButtonStylePropsExtra>(({
     backgroundColor, borderColor, width, borderWidth
 }) => ({
@@ -37,25 +57,20 @@ export const ButtonOutlineView = styled(ButtonSolidView)({
     borderWidth: 1.7,
 });
 
-export const StyledTouchable = styled.TouchableOpacity<StyledViewProps>(({
+export const StyledTouchable = styled(StyledTouchableOpacity)<StyledViewProps>(({
     theme,
     paddingHorizontal = spacingSize.i10,
     paddingVertical = spacingSize.i10,
     borderRadius = 5,
+    justifyContent = "center",
+    alignItems = "center",
     ...rest
 }) => ({
     paddingHorizontal,
     paddingVertical,
     borderRadius,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: rest?.backgroundColor,
-    width: rest?.width,
-    height: rest?.height,
-    borderColor: rest?.borderColor,
-    borderWidth: rest?.borderWidth,
-    marginTop: rest?.marginTop,
-    opacity: rest?.opacity,
+    alignItems,
+    justifyContent,
 }))
 
 export const ThemedButtonOuter = styled.TouchableOpacity<{ borderColor?: ColorValue }>(({
@@ -95,28 +110,28 @@ export const ThemedButtonInner = styled.View<{
     position: "relative",
 }))
 
-export const FloatingTouchableOpacity = styled.TouchableOpacity<{ 
-    backgroundColor: string 
-}>(({ 
-    backgroundColor 
+export const FloatingTouchableOpacity = styled.TouchableOpacity<{
+    backgroundColor: string
+}>(({
+    backgroundColor
 }) => ({
-        backgroundColor,
-        width: wp(12),
-        height: wp(12),
-        borderRadius: wp(6),
-        padding: 5,
-        borderWidth: 1,
-        borderColor: 'transparent',
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 30,
-        zIndex: 999,
-        shadowColor: '#c4c4c4',
-        shadowOpacity: 0.3,
-        bottom: 30,
-        right: wp(5),
-        position: 'absolute'
-    })
+    backgroundColor,
+    width: wp(12),
+    height: wp(12),
+    borderRadius: wp(6),
+    padding: 5,
+    borderWidth: 1,
+    borderColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 30,
+    zIndex: 999,
+    shadowColor: '#c4c4c4',
+    shadowOpacity: 0.3,
+    bottom: 30,
+    right: wp(5),
+    position: 'absolute'
+})
 );
 
 export const IconButton = styled.TouchableOpacity<ViewStyle>(({
@@ -132,9 +147,9 @@ export const IconButton = styled.TouchableOpacity<ViewStyle>(({
     flexDirection: rest?.flexDirection ?? 'row',
     alignItems: rest?.alignItems ?? 'center',
     justifyContent: rest?.justifyContent ?? 'center',
-    borderRadius: rest?.borderRadius ?? 5, 
-    borderWidth: rest?.borderWidth, 
-    borderColor: rest?.borderColor, 
-    marginHorizontal: rest?.marginHorizontal, 
+    borderRadius: rest?.borderRadius ?? 5,
+    borderWidth: rest?.borderWidth,
+    borderColor: rest?.borderColor,
+    marginHorizontal: rest?.marginHorizontal,
 
 }));

@@ -39,7 +39,7 @@ export interface Auth {
   uuid: string;
   auth: string;
   access_token: string;
-  user_info: User;
+  user: User;
 }
 
 export interface User {

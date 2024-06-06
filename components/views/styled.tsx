@@ -5,10 +5,31 @@ import { wp, heightPixel, widthPixel } from "utils";
 import { RFSpacingSize, spacingSize } from "./sizes";
 
 export interface StyledViewProps extends ViewStyle {
-    backgroundColor?: ColorValue,
-    paddingHorizontal?: number,
-    paddingVertical?: number,
+
 }
+
+export const StyledView = styled(Animated.View)<StyledViewProps>(({
+    ...rest
+}) => ({
+    paddingHorizontal: rest?.paddingHorizontal,
+    paddingVertical: rest?.paddingVertical,
+    borderRadius: rest?.borderRadius,
+    alignItems: rest?.alignItems,
+    justifyContent: rest?.justifyContent,
+    backgroundColor: rest?.backgroundColor,
+    width: rest?.width,
+    height: rest?.height,
+    borderColor: rest?.borderColor,
+    borderWidth: rest?.borderWidth,
+    marginTop: rest?.marginTop,
+    marginBottom: rest?.marginBottom,
+    marginLeft: rest?.marginLeft,
+    marginRight: rest?.marginRight,
+    opacity: rest?.opacity,
+    padding: rest?.padding,
+    zIndex: rest?.zIndex,
+    position: rest?.position,
+}))
 
 export const Row = styled.TouchableOpacity<StyledViewProps>(({
     justifyContent,
@@ -62,7 +83,7 @@ export const Card = styled.Pressable<{
     display: "flex"
 }))
 
-export const ViewContainer = styled(Animated.View)<StyledViewProps>(({
+export const ViewContainer = styled(StyledView)(({
     paddingVertical = 0,
     paddingHorizontal = RFSpacingSize.i20,
     backgroundColor,
@@ -71,10 +92,6 @@ export const ViewContainer = styled(Animated.View)<StyledViewProps>(({
     paddingHorizontal,
     paddingVertical,
     backgroundColor,
-    flex: rest?.flex,
-    flexGrow: rest?.flexGrow,
-    paddingRight: rest?.paddingRight,
-    paddingLeft: rest?.paddingLeft,
 }));
 
 export const ActionSheetViewContainer = styled.View({

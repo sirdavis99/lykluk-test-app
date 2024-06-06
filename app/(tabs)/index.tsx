@@ -13,6 +13,9 @@ export default function DashboardScreen() {
     const { height, width } = useWindowDimensions()
     const { top, bottom } = useSafeAreaInsets()
     const [assets, error] = useAssets([Video1, Video2, Video3]);
+
+    // console.log(error)
+
     return (
         <BaseView
             backgroundColor={"#000"}
